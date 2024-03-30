@@ -1,4 +1,13 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import Editor from '@cortexcloud/ckeditor5-classic-underline';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +15,10 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnChanges {
+
+  public CKEditor = Editor;
+  public editorData = '';
+
   @Input()
   inputData: unknown;
 
@@ -15,36 +28,27 @@ export class AppComponent implements OnChanges {
   @Input()
   descriptor = {
     valueModel: {
-      type: 'number',
-      metadata: {title: 'number value'}
+      type: 'string',
+      metadata: { title: 'rich text' }
     },
-    configuration: {
-      hideButton: {type: 'boolean', defaultValue: false}
-    }
+    configuration: {}
   }
 
   @Output()
   outputData: EventEmitter<any> = new EventEmitter<any>();
 
-  value: number | undefined;
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes['inputData']?.currentValue) {
       try {
-        this.value = parseInt(changes['inputData'].currentValue, 10);
+        this.editorData = changes['inputData'].currentValue;
       } catch (e) {
-        console.error('Input data is not a number!', changes['inputData']?.currentValue);
+        console.error('error: ', e);
+        console.error('change value: ', changes['inputData']?.currentValue);
       }
     }
   }
 
-  resetInputData() {
-    this.value = 500;
-    this.outputData.emit(this.value);
-  }
-
-  updateInputData(inputEvent: Event) {
-    this.value = (inputEvent.target as any)?.value;
-    this.outputData.emit(this.value);
+  public onEditorDataChange(_event : ChangeEvent<any>) {
+    this.outputData.emit(this.editorData);
   }
 }

@@ -1,5 +1,6 @@
-<div class="widget-component">
-  <button (click)="resetInputData()" *ngIf="!config?.hideButton">reset input data to 500</button>
-  <span>this is a widget template. here you see basic input that also outputs data: </span>
-  <input type="number" [value]="value" (input)="updateInputData($event)" />
-</div>
+<ckeditor
+  [editor]="CKEditor"
+  [(ngModel)]="editorData"
+  (change)="onEditorDataChange($event)"
+>
+</ckeditor>

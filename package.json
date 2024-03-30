@@ -1,13 +1,13 @@
 {
-  "name": "angular-widget-template",
-  "version": "0.0.0",
+  "name": "rich-text-field-widget",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:angular-widget-template": "ng run angular-widget-template:build:production --output-hashing none && node scripts/generate-web-components.js angular-widget-template"
+    "build:widget": "ng run rich-text-field-widget:build:production --output-hashing none && node scripts/generate-web-components.js rich-text-field-widget"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +21,13 @@
     "@angular/platform-browser": "^16.2.12",
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@angular/router": "^16.2.12",
+    "@ckeditor/ckeditor5-angular": "^7.0.1",
+    "@ckeditor/ckeditor5-build-classic": "^41.2.1",
+    "@ckeditor/ckeditor5-core": "^41.2.1",
+    "@ckeditor/ckeditor5-engine": "^41.2.1",
+    "@ckeditor/ckeditor5-utils": "^41.2.1",
+    "@ckeditor/ckeditor5-watchdog": "^41.2.1",
+    "@cortexcloud/ckeditor5-classic-underline": "^41.2.1",
     "concat": "^1.0.3",
     "fs-extra": "^10.0.0",
     "rxjs": "~7.4.0",

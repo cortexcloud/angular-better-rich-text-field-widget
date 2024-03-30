@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-widget-template'),
+      dir: require('path').join(__dirname, './coverage/rich-text-field-widget'),
       subdir: '.',
       reporters: [
         { type: 'html' },
